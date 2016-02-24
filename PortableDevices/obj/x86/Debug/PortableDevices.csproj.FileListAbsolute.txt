@@ -1,0 +1,15 @@
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\obj\x86\Debug\Interop.PortableDeviceApiLib.dll
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\obj\x86\Debug\Interop.PortableDeviceTypesLib.dll
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\obj\x86\Debug\PortableDevices.csproj.ResolveComReference.cache
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\bin\Debug\PortableDevices.exe
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\bin\Debug\PortableDevices.pdb
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\bin\Debug\Interop.PortableDeviceApiLib.dll
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\bin\Debug\Interop.PortableDeviceTypesLib.dll
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\obj\x86\Debug\PortableDevices.csprojResolveAssemblyReference.cache
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\obj\x86\Debug\PortableDevices.exe
+C:\Users\lasm\Desktop\WPDNew\PortableDevices\obj\x86\Debug\PortableDevices.pdb
+C:\Users\lasm\Desktop\WPDApi\PortableDevices\obj\x86\Debug\Interop.PortableDeviceApiLib.dll
+C:\Users\lasm\Desktop\WPDApi\PortableDevices\obj\x86\Debug\Interop.PortableDeviceTypesLib.dll
+C:\Users\lasm\Desktop\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.csproj.ResolveComReference.cache
+C:\Users\lasm\Desktop\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.exe
+C:\Users\lasm\Desktop\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.pdb
