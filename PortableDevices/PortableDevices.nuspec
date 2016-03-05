@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Lasha</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Library for data exchante with MTP devices</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>MTP C# .NET Portable Devices</tags>
+  </metadata>
+</package>

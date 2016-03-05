@@ -21,6 +21,7 @@ namespace PortableDevices
             uint count = 1;
             this._deviceManager.GetDevices(ref deviceIds[0], ref count);
 
+            if (count == 0) return;
             // Retrieve the device id for each connected device
             deviceIds = new string[count];
             this._deviceManager.GetDevices(ref deviceIds[0], ref count);
