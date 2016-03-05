@@ -7,3 +7,4 @@ C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\bin\Debug\Interop.PortableDevi
 C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
 C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.exe
 C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.pdb
+C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\bin\Debug\PortableDevices.pdb

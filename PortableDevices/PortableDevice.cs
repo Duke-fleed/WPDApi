@@ -154,9 +154,9 @@ namespace PortableDevices
 
             resources.GetStream(file.Id, ref property, 0, ref optimalTransferSize, out wpdStream);
 
-            System.Runtime.InteropServices.ComTypes.IStream sourceStream = (System.Runtime.InteropServices.ComTypes.IStream)wpdStream;
+            var sourceStream = (System.Runtime.InteropServices.ComTypes.IStream)wpdStream;
 
-            var filename = Path.GetFileName(file.Id);
+            var filename = Path.GetFileName(file.Name);
             FileStream targetStream = new FileStream(Path.Combine(saveToPath, filename), FileMode.Create, FileAccess.Write);
 
             unsafe
@@ -170,6 +170,43 @@ namespace PortableDevices
                 } while (bytesRead > 0);
                 targetStream.Close();
             }
+        }
+
+        public string DownloadFileToString(PortableDeviceFile file)
+        {
+            IPortableDeviceContent content;
+            this._device.Content(out content);
+
+            IPortableDeviceResources resources;
+            content.Transfer(out resources);
+
+            PortableDeviceApiLib.IStream wpdStream;
+            uint optimalTransferSize = 0;
+
+            var property = new _tagpropertykey();
+            property.fmtid = new Guid(0xE81E79BE, 0x34F0, 0x41BF, 0xB5, 0x3F, 0xF1, 0xA0, 0x6A, 0xE8, 0x78, 0x42);
+            property.pid = 0;
+
+            resources.GetStream(file.Id, ref property, 0, ref optimalTransferSize, out wpdStream);
+
+            System.Runtime.InteropServices.ComTypes.IStream sourceStream = (System.Runtime.InteropServices.ComTypes.IStream)wpdStream;
+            MemoryStream targetStream = new MemoryStream();
+            unsafe
+            {
+                var buffer = new byte[1024];
+                int bytesRead;
+                do
+                {
+                    sourceStream.Read(buffer, 1024, new IntPtr(&bytesRead));
+                    targetStream.Write(buffer, 0, 1024);
+                } while (bytesRead > 0);
+                //targetStream.Close();
+            }
+
+            StreamReader reader = new StreamReader(targetStream);
+            var text =  reader.ReadToEnd();
+            targetStream.Close();
+            return text;
         }
 
         private static void StringToPropVariant(
