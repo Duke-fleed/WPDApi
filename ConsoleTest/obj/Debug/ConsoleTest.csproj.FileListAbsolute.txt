@@ -8,3 +8,13 @@ C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.csprojRe
 C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.exe
 C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.pdb
 C:\Users\Fenomeno\Source\Repos\WPDApi\ConsoleTest\bin\Debug\PortableDevices.pdb
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\bin\Debug\ConsoleTest.exe.config
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\bin\Debug\ConsoleTest.exe
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\bin\Debug\ConsoleTest.pdb
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\bin\Debug\PortableDevices.dll
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\bin\Debug\Interop.PortableDeviceApiLib.dll
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\bin\Debug\Interop.PortableDeviceTypesLib.dll
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\bin\Debug\PortableDevices.pdb
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.csprojResolveAssemblyReference.cache
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.exe
+C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\obj\Debug\ConsoleTest.pdb

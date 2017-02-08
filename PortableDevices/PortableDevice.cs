@@ -7,6 +7,7 @@ using _tagpropertykey = PortableDeviceApiLib._tagpropertykey;
 using IPortableDeviceKeyCollection = PortableDeviceApiLib.IPortableDeviceKeyCollection;
 using IPortableDeviceValues = PortableDeviceApiLib.IPortableDeviceValues;
 using System.Runtime.InteropServices;
+using IStream = PortableDeviceApiLib.IStream;
 
 namespace PortableDevices
 {
@@ -172,6 +173,36 @@ namespace PortableDevices
             }
         }
 
+        public unsafe byte[] DownloadFileToStream(PortableDeviceFile file)
+        {
+            IPortableDeviceContent iportableDeviceContent;
+            this._device.Content(out iportableDeviceContent);
+            IPortableDeviceResources iportableDeviceResources;
+            iportableDeviceContent.Transfer(out iportableDeviceResources);
+            uint num = 0;
+            _tagpropertykey tagpropertykey;
+            tagpropertykey.fmtid = new Guid(3894311358U, (ushort)13552, (ushort)16831, (byte)181, (byte)63, (byte)241, (byte)160, (byte)106, (byte)232, (byte)120, (byte)66);
+            tagpropertykey.pid = 0;
+            PortableDeviceApiLib.IStream istream;
+            iportableDeviceResources.GetStream(file.Id, ref tagpropertykey, 0U, ref num, out istream);
+            System.Runtime.InteropServices.ComTypes.IStream stream = (System.Runtime.InteropServices.ComTypes.IStream)istream;
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                int count = 0;
+                int cb = 8192;
+                byte[] numArray = new byte[cb];
+                do
+                {
+                    stream.Read(numArray, cb, new IntPtr((void*)&count));
+                    memoryStream.Write(numArray, 0, count);
+                }
+                while (count >= cb);
+                Marshal.ReleaseComObject((object)stream);
+                Marshal.ReleaseComObject((object)istream);
+                return memoryStream.ToArray();
+            }
+        }
+
         public string DownloadFileToString(PortableDeviceFile file)
         {
             IPortableDeviceContent content;
@@ -206,6 +237,7 @@ namespace PortableDevices
             StreamReader reader = new StreamReader(targetStream);
             var text =  reader.ReadToEnd();
             targetStream.Close();
+
             return text;
         }
 
@@ -278,7 +310,8 @@ namespace PortableDevices
             {
                 return new PortableDeviceFolder(objectId, name);
             }
-
+            property.pid = 12;//WPD_OBJECT_ORIGINAL_FILE_NAME
+            values.GetStringValue(property, out name);
             return new PortableDeviceFile(objectId, name);
         }
 
@@ -295,6 +328,7 @@ namespace PortableDevices
             values.SetStringValue(ref WPD_OBJECT_PARENT_ID, parentObjectId);
 
             FileInfo fileInfo = new FileInfo(fileName);
+            
             var WPD_OBJECT_SIZE = new _tagpropertykey();
             WPD_OBJECT_SIZE.fmtid =
                 new Guid(0xEF6B490D, 0x5CD8, 0x437A, 0xAF, 0xFC,
@@ -315,6 +349,42 @@ namespace PortableDevices
                             0xDA, 0x8B, 0x60, 0xEE, 0x4A, 0x3C);
             WPD_OBJECT_NAME.pid = 4;
             values.SetStringValue(WPD_OBJECT_NAME, Path.GetFileName(fileName));
+
+            return values;
+        }
+
+        private IPortableDeviceValues GetRequiredPropertiesForContentTypeFromStream(MemoryStream inputStream, string fileName, string parentObjectId)
+        {
+            IPortableDeviceValues values =
+                                        new PortableDeviceValues() as IPortableDeviceValues;
+
+            var WPD_OBJECT_PARENT_ID = new _tagpropertykey();
+            WPD_OBJECT_PARENT_ID.fmtid =
+                new Guid(0xEF6B490D, 0x5CD8, 0x437A, 0xAF, 0xFC,
+                            0xDA, 0x8B, 0x60, 0xEE, 0x4A, 0x3C);
+            WPD_OBJECT_PARENT_ID.pid = 3;
+            values.SetStringValue(ref WPD_OBJECT_PARENT_ID, parentObjectId);
+
+            var WPD_OBJECT_SIZE = new _tagpropertykey();
+            WPD_OBJECT_SIZE.fmtid =
+                new Guid(0xEF6B490D, 0x5CD8, 0x437A, 0xAF, 0xFC,
+                            0xDA, 0x8B, 0x60, 0xEE, 0x4A, 0x3C);
+            WPD_OBJECT_SIZE.pid = 11;
+            values.SetUnsignedLargeIntegerValue(WPD_OBJECT_SIZE, (ulong)inputStream.Length);
+
+            var WPD_OBJECT_ORIGINAL_FILE_NAME = new _tagpropertykey();
+            WPD_OBJECT_ORIGINAL_FILE_NAME.fmtid =
+                new Guid(0xEF6B490D, 0x5CD8, 0x437A, 0xAF, 0xFC,
+                            0xDA, 0x8B, 0x60, 0xEE, 0x4A, 0x3C);
+            WPD_OBJECT_ORIGINAL_FILE_NAME.pid = 12;
+            values.SetStringValue(WPD_OBJECT_ORIGINAL_FILE_NAME, fileName);
+
+            var WPD_OBJECT_NAME = new _tagpropertykey();
+            WPD_OBJECT_NAME.fmtid =
+                new Guid(0xEF6B490D, 0x5CD8, 0x437A, 0xAF, 0xFC,
+                            0xDA, 0x8B, 0x60, 0xEE, 0x4A, 0x3C);
+            WPD_OBJECT_NAME.pid = 4;
+            values.SetStringValue(WPD_OBJECT_NAME, fileName);
 
             return values;
         }
@@ -364,6 +434,48 @@ namespace PortableDevices
                 Marshal.ReleaseComObject(tempStream);
             }
 
+        }
+
+        public void TransferContentToDeviceFromStream(string fileName, MemoryStream inputStream, string parentObjectId)
+        {
+            IPortableDeviceContent content;
+            this._device.Content(out content);
+
+
+            IPortableDeviceValues values =
+                GetRequiredPropertiesForContentTypeFromStream(inputStream, fileName, parentObjectId);
+
+
+            PortableDeviceApiLib.IStream tempStream;
+            uint optimalTransferSizeBytes = 0;
+            content.CreateObjectWithPropertiesAndData(
+                values,
+                out tempStream,
+                ref optimalTransferSizeBytes,
+                null);
+
+            System.Runtime.InteropServices.ComTypes.IStream targetStream =
+                (System.Runtime.InteropServices.ComTypes.IStream)tempStream;
+            try
+            {
+                using (MemoryStream memoryStream = inputStream)
+                {
+                    byte[] numArray = new byte[(int)optimalTransferSizeBytes];
+                    int cb;
+                    do
+                    {
+                        cb = memoryStream.Read(numArray, 0, (int)optimalTransferSizeBytes);
+                        IntPtr zero = IntPtr.Zero;
+                        targetStream.Write(numArray, cb, zero);
+                    }
+                    while (cb > 0);
+                }
+                targetStream.Commit(0);
+            }
+            finally
+            {
+                Marshal.ReleaseComObject((object)tempStream);
+            }
         }
 
         #endregion

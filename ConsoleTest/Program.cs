@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,10 +29,20 @@ namespace ConsoleTest
 
 
             var nacresFolder = (root.Files.FirstOrDefault() as PortableDeviceFolder).Files.FirstOrDefault(x => x.Name == "Nacres") as PortableDeviceFolder;
-            var filledQuestionnairesFile = nacresFolder.Files.FirstOrDefault(x => x.Name == "FilledQuestionnaires.txt") as PortableDeviceFile;
+            var imgPath = "C:\\Users\\Lasha\\Desktop\\GettyImages-87948663.jpg";
+            var image = Image.FromFile(imgPath);
+            byte[] imageB;
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+                imageB = ms.ToArray();
+            }
+            //Tablet.TransferContentToDevice("C:\\Users\\Lasha\\Desktop\\GettyImages-87948663.jpg", nacresFolder.Id);
+            Tablet.TransferContentToDeviceFromStream(Path.GetFileName(imgPath), new MemoryStream(imageB), nacresFolder.Id);
+            var filledQuestionnairesFile = nacresFolder.Files.FirstOrDefault(x => x.Name == "FilledQuestionnaires.txt" || x.Name == "FilledQuestionnaires") as PortableDeviceFile;
             //var filledQuestionnairesTempFile = Path.Combine(Path.GetTempPath(), Constants.FILLED_QUESTIONNAIRES_JSON);
             var asdf = Tablet.DownloadFileToString(filledQuestionnairesFile);
-            Tablet.DownloadFile(filledQuestionnairesFile, "D:\\");
+            Tablet.DownloadFile(filledQuestionnairesFile, "C:\\");
 
 
 
