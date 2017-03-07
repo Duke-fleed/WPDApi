@@ -1,4 +1,0 @@
-C:\Users\Fenomeno\Source\Repos\WPDApi\PortableDevicesLib\obj\Debug\PortableDevicesLib.csprojResolveAssemblyReference.cache
-C:\Users\Fenomeno\Source\Repos\WPDApi\PortableDevicesLib\obj\Debug\Interop.PortableDeviceApiLib.dll
-C:\Users\Fenomeno\Source\Repos\WPDApi\PortableDevicesLib\obj\Debug\Interop.PortableDeviceTypesLib.dll
-C:\Users\Fenomeno\Source\Repos\WPDApi\PortableDevicesLib\obj\Debug\PortableDevicesLib.csproj.ResolveComReference.cache
