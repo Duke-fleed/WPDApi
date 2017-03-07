@@ -1,14 +1,16 @@
 <?xml version="1.0"?>
-<package >
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
+    <id>PortableDevices</id>
+    <version>1.0.1.0</version>
+    <title>PortableDevices</title>
     <authors>Lasha</authors>
+    <owners>Lasha</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Library for data exchante with MTP devices</description>
     <releaseNotes>Initial release</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>MTP C# .NET Portable Devices</tags>
+    <dependencies />
   </metadata>
 </package>
