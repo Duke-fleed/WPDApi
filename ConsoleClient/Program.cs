@@ -7,29 +7,48 @@ using System.Text;
 using System.Threading.Tasks;
 using PortableDevices;
 
-namespace ConsoleTest
+namespace ConsoleClient
 {
     class Program
     {
         public static PortableDevice Tablet;
-        public static string NacresFolderId;
+
         static void Main()
         {
+            //Connect to MTP devices and pick up the first one
             var devices = new PortableDeviceCollection();
             devices.Refresh();
 
             Tablet = devices.First();
             Tablet.Connect();
 
+            //Getting root directory
             var root = Tablet.GetContents();
+
+            //Displayinh directory content in console
             foreach (var resource in root.Files)
             {
                 DisplayResourceContents(resource);
             }
 
+            //Finding neccessary folder inside the root
+            var folder = (root.Files.FirstOrDefault() as PortableDeviceFolder).
+                Files.FirstOrDefault(x => x.Name == "Folder") as PortableDeviceFolder;
 
-            var nacresFolder = (root.Files.FirstOrDefault() as PortableDeviceFolder).Files.FirstOrDefault(x => x.Name == "Nacres") as PortableDeviceFolder;
-            var imgPath = "C:\\Users\\Lasha\\Desktop\\GettyImages-87948663.jpg";
+            //Finding file inside the folder
+            var file = (folder as PortableDeviceFolder).Files.FirstOrDefault(x => x.Name == "File");
+
+            //Transfering file into byte array
+            var fileIntoByteArr = Tablet.DownloadFileToStream(file as PortableDeviceFile);
+
+            //Transfering file into file system
+            Tablet.DownloadFile(file as PortableDeviceFile, "\\LOCALPATH");
+
+            //Transfering file rom file system into device folder
+            Tablet.TransferContentToDevice("\\LOCALPATH", folder.Id);
+
+            //Transfering file from stream into device folder
+            var imgPath = "\\LOCALPATH";
             var image = Image.FromFile(imgPath);
             byte[] imageB;
             using (var ms = new MemoryStream())
@@ -37,19 +56,9 @@ namespace ConsoleTest
                 image.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
                 imageB = ms.ToArray();
             }
-            //Tablet.TransferContentToDevice("C:\\Users\\Lasha\\Desktop\\GettyImages-87948663.jpg", nacresFolder.Id);
-            Tablet.TransferContentToDeviceFromStream(Path.GetFileName(imgPath), new MemoryStream(imageB), nacresFolder.Id);
-            var filledQuestionnairesFile = nacresFolder.Files.FirstOrDefault(x => x.Name == "FilledQuestionnaires.txt" || x.Name == "FilledQuestionnaires") as PortableDeviceFile;
-            //var filledQuestionnairesTempFile = Path.Combine(Path.GetTempPath(), Constants.FILLED_QUESTIONNAIRES_JSON);
-            var asdf = Tablet.DownloadFileToString(filledQuestionnairesFile);
-            Tablet.DownloadFile(filledQuestionnairesFile, "C:\\");
+            Tablet.TransferContentToDeviceFromStream("FILE NAME", new MemoryStream(imageB), folder.Id);
 
-
-
-            var testFile = nacresFolder.Files.FirstOrDefault(x => x.Name == "TestFile") as PortableDeviceFile;
-            Tablet.DeleteFile(testFile);
-
-            Tablet.TransferContentToDevice("C:\\Users\\lasm\\Desktop\\TestFile.txt", NacresFolderId);
+            //Close the connection
             Tablet.Disconnect();
 
             Console.WriteLine();
