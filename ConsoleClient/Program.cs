@@ -36,7 +36,7 @@ namespace ConsoleClient
                 Files.FirstOrDefault(x => x.Name == "Folder") as PortableDeviceFolder;
 
             //Finding file inside the folder
-            var file = (folder as PortableDeviceFolder).Files.FirstOrDefault(x => x.Name == "File");
+            var file = (folder as PortableDeviceFolder)?.Files?.FirstOrDefault(x => x.Name == "File");
 
             //Transfering file into byte array
             var fileIntoByteArr = Tablet.DownloadFileToStream(file as PortableDeviceFile);
