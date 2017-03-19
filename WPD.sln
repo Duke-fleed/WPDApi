@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortableDevices", "PortableDevices\PortableDevices.csproj", "{54A55C7D-0660-48C1-ADC3-C4CD1BD39B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{39024260-DC88-4EC7-8A7E-8894EF8F3419}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{39024260-DC88-4EC7-8A7E-8894EF8F3419}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
