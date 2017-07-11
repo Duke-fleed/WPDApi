@@ -8,3 +8,13 @@ C:\Users\Lasha\Documents\projects\WPDApi\ConsoleClient\bin\Debug\PortableDevices
 C:\Users\Lasha\Documents\projects\WPDApi\ConsoleClient\obj\Debug\ConsoleClient.csprojResolveAssemblyReference.cache
 C:\Users\Lasha\Documents\projects\WPDApi\ConsoleClient\obj\Debug\ConsoleClient.exe
 C:\Users\Lasha\Documents\projects\WPDApi\ConsoleClient\obj\Debug\ConsoleClient.pdb
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\bin\Debug\ConsoleClient.exe.config
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\bin\Debug\ConsoleClient.exe
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\bin\Debug\ConsoleClient.pdb
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\bin\Debug\PortableDevices.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\bin\Debug\Interop.PortableDeviceApiLib.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\bin\Debug\Interop.PortableDeviceTypesLib.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\bin\Debug\PortableDevices.pdb
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\obj\Debug\ConsoleClient.csprojResolveAssemblyReference.cache
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\obj\Debug\ConsoleClient.exe
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\ConsoleClient\obj\Debug\ConsoleClient.pdb

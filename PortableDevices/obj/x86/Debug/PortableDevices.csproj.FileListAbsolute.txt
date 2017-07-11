@@ -33,3 +33,13 @@ C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Debug\PortableD
 C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.dll
 C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.pdb
 C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.csprojResolveAssemblyReference.cache
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\bin\Debug\PortableDevices.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\bin\Debug\PortableDevices.pdb
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\bin\Debug\Interop.PortableDeviceApiLib.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\bin\Debug\Interop.PortableDeviceTypesLib.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.csprojResolveAssemblyReference.cache
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\obj\x86\Debug\Interop.PortableDeviceApiLib.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\obj\x86\Debug\Interop.PortableDeviceTypesLib.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.csproj.ResolveComReference.cache
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.dll
+C:\Users\lasha.amashukeli\Documents\Projects\WPDApi\PortableDevices\obj\x86\Debug\PortableDevices.pdb
