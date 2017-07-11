@@ -1,9 +1,0 @@
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Release\Interop.PortableDeviceApiLib.dll
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Release\Interop.PortableDeviceTypesLib.dll
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Release\PortableDevices.csproj.ResolveComReference.cache
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\bin\Release\PortableDevices.dll
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\bin\Release\PortableDevices.pdb
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\bin\Release\Interop.PortableDeviceApiLib.dll
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\bin\Release\Interop.PortableDeviceTypesLib.dll
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Release\PortableDevices.dll
-C:\Users\Lasha\Documents\projects\WPDApi\PortableDevices\obj\x86\Release\PortableDevices.pdb

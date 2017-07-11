@@ -1,2 +1,0 @@
-C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\bin\Release\ConsoleTest.exe.config
-C:\Users\Lasha\Documents\projects\WPDApi\ConsoleTest\obj\Release\ConsoleTest.csprojResolveAssemblyReference.cache
