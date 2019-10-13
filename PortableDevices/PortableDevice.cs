@@ -336,6 +336,41 @@ namespace PortableDevices
             return values;
         }
 
+        private IPortableDeviceValues GetRequiredPropertiesForFolder(string folderName, string parentObjectId)
+        {
+            var values = new PortableDeviceValues() as IPortableDeviceValues;
+
+            var wpdObjectContentType = new _tagpropertykey
+            {
+                fmtid = CreateFmtidGuid(),
+                pid = 7
+            };
+            values.SetGuidValue(ref wpdObjectContentType, CreateContentTypeFolderGuid());
+
+            var wpdObjectParentId = new _tagpropertykey
+            {
+                fmtid = CreateFmtidGuid(),
+                pid = 3
+            };
+            values.SetStringValue(ref wpdObjectParentId, parentObjectId);
+
+            var wpdObjectOriginalFileName = new _tagpropertykey
+            {
+                fmtid = CreateFmtidGuid(),
+                pid = 12
+            };
+            values.SetStringValue(wpdObjectOriginalFileName, Path.GetFileName(folderName));
+
+            var wpdObjectName = new _tagpropertykey
+            {
+                fmtid = CreateFmtidGuid(),
+                pid = 4
+            };
+            values.SetStringValue(wpdObjectName, Path.GetFileName(folderName));
+
+            return values;
+        }
+
         private IPortableDeviceValues GetRequiredPropertiesForContentTypeFromStream(MemoryStream inputStream, string fileName, string parentObjectId)
         {
             var values = new PortableDeviceValues() as IPortableDeviceValues;
@@ -461,7 +496,22 @@ namespace PortableDevices
             }
         }
 
+        public string CreateFolder(string folderName, string parentObjectId)
+        {
+            IPortableDeviceContent content;
+            PortableDeviceClass.Content(out content);
+
+            var values = GetRequiredPropertiesForFolder(folderName, parentObjectId);
+
+            string folderId = null;
+            content.CreateObjectWithPropertiesOnly(values, ref folderId);
+
+            return folderId;
+        }
+
         private static Guid CreateFmtidGuid() => new Guid(0xEF6B490D, 0x5CD8, 0x437A, 0xAF, 0xFC, 0xDA, 0x8B, 0x60, 0xEE, 0x4A,
             0x3C);
+        private static Guid CreateContentTypeFolderGuid() => new Guid(0x27E2E392, 0xA111, 0x48E0, 0xAB, 0x0C, 0xE1, 0x77, 0x05,
+            0xA0, 0x5F, 0x85);
     }
 }
