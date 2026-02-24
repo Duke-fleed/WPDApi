@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Versioning;
 using PortableDevices;
 
 namespace ConsoleClient
 {
+    [SupportedOSPlatform("windows")]
     class Program
     {
-        public static PortableDevice Tablet;
+        public static PortableDevice? Tablet;
 
         static void Main()
         {
@@ -25,29 +25,29 @@ namespace ConsoleClient
             //Getting root directory
             var root = Tablet.GetContents();
 
-            //Displayinh directory content in console
+            //Displaying directory content in console
             foreach (var resource in root.Files)
             {
                 DisplayResourceContents(resource);
             }
 
-            //Finding neccessary folder inside the root
-            var folder = (root.Files.FirstOrDefault() as PortableDeviceFolder).
-                Files.FirstOrDefault(x => x.Name == "Folder") as PortableDeviceFolder;
+            //Finding necessary folder inside the root
+            var folder = (root.Files.FirstOrDefault() as PortableDeviceFolder)?
+                .Files.FirstOrDefault(x => x.Name == "Folder") as PortableDeviceFolder;
 
             //Finding file inside the folder
-            var file = (folder as PortableDeviceFolder)?.Files?.FirstOrDefault(x => x.Name == "File");
+            var file = folder?.Files?.FirstOrDefault(x => x.Name == "File");
 
-            //Transfering file into byte array
-            var fileIntoByteArr = Tablet.DownloadFileToStream(file as PortableDeviceFile);
+            //Transferring file into byte array
+            var fileIntoByteArr = Tablet.DownloadFileToStream((file as PortableDeviceFile)!);
 
-            //Transfering file into file system
-            Tablet.DownloadFile(file as PortableDeviceFile, "\\LOCALPATH");
+            //Transferring file into file system
+            Tablet.DownloadFile((file as PortableDeviceFile)!, "\\LOCALPATH");
 
-            //Transfering file rom file system into device folder
-            Tablet.TransferContentToDevice("\\LOCALPATH", folder.Id);
+            //Transferring file from file system into device folder
+            Tablet.TransferContentToDevice("\\LOCALPATH", folder!.Id);
 
-            //Transfering file from stream into device folder
+            //Transferring file from stream into device folder
             var imgPath = "\\LOCALPATH";
             var image = Image.FromFile(imgPath);
             byte[] imageB;
@@ -69,9 +69,9 @@ namespace ConsoleClient
         public static void DisplayResourceContents(PortableDeviceObject portableDeviceObject)
         {
             Console.WriteLine(portableDeviceObject.Name);
-            if (portableDeviceObject is PortableDeviceFolder)
+            if (portableDeviceObject is PortableDeviceFolder folder)
             {
-                DisplayFolderContents((PortableDeviceFolder)portableDeviceObject);
+                DisplayFolderContents(folder);
             }
         }
 
@@ -81,9 +81,9 @@ namespace ConsoleClient
             {
                 Console.WriteLine(item.Name);
 
-                if (item is PortableDeviceFolder)
+                if (item is PortableDeviceFolder subFolder)
                 {
-                    DisplayFolderContents((PortableDeviceFolder)item);
+                    DisplayFolderContents(subFolder);
                 }
             }
         }
